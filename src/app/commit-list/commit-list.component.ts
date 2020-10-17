@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommitService } from './commit.service';
 
 @Component({
   selector: 'app-commit-list',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommitListComponent implements OnInit {
 
-  constructor() { }
+  commits: any[];
+
+  constructor(private commitService: CommitService) { }
 
   ngOnInit(): void {
+    this.populateCommits();
   }
 
+  populateCommits() {
+    this.commitService.getCommits().subscribe({
+      next: commits => this.commits = commits
+    });
+  }
 }

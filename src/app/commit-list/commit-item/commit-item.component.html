@@ -1,1 +1,14 @@
-<p>commit-item works!</p>
+<a [href]="commit.html_url" 
+    class="list-group-item clearfix"
+    target="_blank">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ commit.sha }}</h4>
+        <p class="list-group-item-text">
+            Author: {{ commit.commit.author.name }} <br>
+            Message: {{ commit.commit.message }}
+        </p>
+    </div>
+    <span class="pull-right">
+        {{ commit.commit.author.date }}
+    </span>
+</a>
