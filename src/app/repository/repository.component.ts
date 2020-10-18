@@ -9,7 +9,6 @@ import { Repository } from './repository.model';
 })
 export class RepositoryComponent implements OnInit {
   repositories: Repository[];
-  @Output() repositorySelected: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private repositoryService: RepositoryService) { }
 
@@ -23,7 +22,7 @@ export class RepositoryComponent implements OnInit {
     });
   }
 
-  onRepositoryChanged(repository: any) {
-    this.repositorySelected.emit(repository);
+  onRepositoryChanged(repository: string) {
+    this.repositoryService.repositorySelected.next(repository);
   }
 }

@@ -1,23 +1,23 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommitService } from './commit.service';
+import { RepositoryService } from '../repository/repository.service';
 
 @Component({
   selector: 'app-commit-list',
   templateUrl: './commit-list.component.html',
   styleUrls: ['./commit-list.component.css']
 })
-export class CommitListComponent implements OnInit, OnChanges {
+export class CommitListComponent implements OnInit {
   commits: any[];
-  @Input() repository: string;
 
-  constructor(private commitService: CommitService) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.loadCommits(this.repository);
+  constructor(private commitService: CommitService,
+              private repositoryService: RepositoryService) {
   }
 
   ngOnInit(): void {
-
+    this.repositoryService.repositorySelected.subscribe(
+      (repository: string) => this.loadCommits(repository)
+    );
   }
 
   loadCommits(repository: string) {
