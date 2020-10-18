@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommitService } from './commit.service';
 
 @Component({
@@ -6,18 +6,22 @@ import { CommitService } from './commit.service';
   templateUrl: './commit-list.component.html',
   styleUrls: ['./commit-list.component.css']
 })
-export class CommitListComponent implements OnInit {
-
+export class CommitListComponent implements OnInit, OnChanges {
   commits: any[];
+  @Input() repository: string;
 
   constructor(private commitService: CommitService) { }
 
-  ngOnInit(): void {
-    this.populateCommits();
+  ngOnChanges(changes: SimpleChanges): void {
+    this.loadCommits(this.repository);
   }
 
-  populateCommits() {
-    this.commitService.getCommits().subscribe({
+  ngOnInit(): void {
+
+  }
+
+  loadCommits(repository: string) {
+    this.commitService.getCommits(repository).subscribe({
       next: commits => this.commits = commits
     });
   }

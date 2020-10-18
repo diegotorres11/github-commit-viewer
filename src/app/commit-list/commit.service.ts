@@ -6,13 +6,13 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class CommitService {
-    private url: string = "https://api.github.com/repos/diegotorres11/github-commit-viewer/commits";
+    private baseUrl: string = "https://api.github.com/repos/diegotorres11";
 
     constructor(private client: HttpClient) {
-
     }
 
-    getCommits(): Observable<any[]> {
-        return this.client.get<any[]>(this.url);
+    getCommits(repo: string): Observable<any[]> {
+        var url = this.baseUrl + "/" + repo + "/commits";
+        return this.client.get<any[]>(url);
     }
 }

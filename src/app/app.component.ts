@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'github-commit-viewer';
+  title = 'Github commit viewer';
+  selectedRepository: string;
 }

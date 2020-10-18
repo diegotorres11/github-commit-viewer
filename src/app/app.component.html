@@ -2,6 +2,8 @@
   <div class="jumbotron">
     <h2>GitHub Commit Viewer</h2>
   </div>
-
-  <app-commit-list></app-commit-list>
+  
+  <app-repository (repositorySelected)="selectedRepository = $event"></app-repository>
+  <br><br>
+  <app-commit-list [repository]="selectedRepository" *ngIf="selectedRepository"></app-commit-list>
 </div>

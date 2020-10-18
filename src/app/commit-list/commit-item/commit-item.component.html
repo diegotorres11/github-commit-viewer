@@ -2,13 +2,13 @@
     class="list-group-item clearfix"
     target="_blank">
     <div class="pull-left">
-        <h4 class="list-group-item-heading">{{ commit.sha }}</h4>
+        <h4 class="text-primary">{{ commit.sha }}</h4>
         <p class="list-group-item-text">
-            Author: {{ commit.commit.author.name }} <br>
+            Author: {{ commit.commit.author.name }} ({{ commit.commit.author.email }}) <br>
             Message: {{ commit.commit.message }}
         </p>
     </div>
     <span class="pull-right">
-        {{ commit.commit.author.date }}
+        {{ commit.commit.author.date | date:'medium' }}
     </span>
 </a>
